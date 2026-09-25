@@ -1,0 +1,23 @@
+### Prompt 1: Chẩn đoán Anti-pattern
+* **Giai đoạn:** Bước 1 - Hình thành ý tưởng và Thẩm định
+* **Nội dung Prompt:**  
+  - "Trong thiết kế cơ sở dữ liệu quan hệ, tại sao việc dùng một cột `is_active` (kiểu TINYINT/BOOLEAN) để theo dõi vòng đời của một Đơn hàng/Lịch hẹn lại là một thiết kế tồi (Anti-pattern)? Tôi nên thay thế bằng cấu trúc nào?"
+* **Kết quả thu được:** AI giải thích lý do Boolean chỉ biểu diễn được 2 trạng thái, gây mất lịch sử chuyển dịch trạng thái. AI đề xuất thay bằng kiểu `ENUM`/`VARCHAR` hoặc dùng bảng `StatusHistory`.
+
+### Prompt 2: Lựa chọn kiểu dữ liệu tài chính
+* **Giai đoạn:** Bước 2 - Thiết kế lại ERD
+* **Nội dung Prompt:**  
+  - "Khi thiết kế cột deposit_amount và penalty_fee trong MySQL phục vụ tính toán tài chính, tôi nên dùng kiểu dữ liệu FLOAT, DOUBLE hay DECIMAL? Tại sao?"
+* **Kết quả thu được:** AI chỉ ra sai số làm tròn của `FLOAT`/`DOUBLE` trong phép tính nhị phân và khuyến nghị dùng `DECIMAL(12,2)` để đảm bảo độ chính xác tuyệt đối cho dữ liệu tiền tệ.
+
+### Prompt 3: Cú pháp chỉnh sửa Schema & DDL
+* **Giai đoạn:** Bước 3 - Triển khai mã SQL
+* **Nội dung Prompt:**  
+  - "Hãy cho tôi xem cú pháp chuẩn trong MySQL để thêm một cột status với kiểu dữ liệu ENUM chứa các giá trị ('PENDING', 'CONFIRMED', 'CHECKED_IN', 'COMPLETED', 'CANCELLED') vào một bảng có sẵn."
+* **Kết quả thu được:** AI cung cấp câu lệnh `ALTER TABLE Appointments ADD COLUMN status ENUM(...)` và câu lệnh `CREATE TABLE Prescriptions` có gắn khóa ngoại 1-1 (`UNIQUE`).
+
+### Prompt 4: Viết câu lệnh truy vấn kiểm thử (JOIN)
+* **Giai đoạn:** Bước 4 - Vận hành và Chép liệu thực tế
+* **Nội dung Prompt:**  
+  - "Viết cho tôi một câu lệnh SQL SELECT kết hợp JOIN giữa bảng Appointments và Prescriptions để lấy ra danh sách tất cả các bệnh nhân đã hoàn tất khám bệnh và chi tiết đơn thuốc của họ."
+* **Kết quả thu được:** AI cung cấp câu lệnh `INNER JOIN` với điều kiện `WHERE a.status = 'COMPLETED'`, giúp hoàn thành yêu cầu truy vấn hiển thị dữ liệu sạch.

@@ -1,0 +1,8 @@
+1. Quản lý trạng thái bằng Anti-pattern (`is_active`):  
+  -Thiết kế cũ sử dụng cột kiểu Boolean (`is_active`) chỉ lưu được 2 giá trị (0/1), trong khi luồng nghiệp vụ thực tế yêu cầu theo dõi 5 trạng thái vận hành (*PENDING, CONFIRMED, CHECKED_IN, COMPLETED, CANCELLED*). Điều này làm đứt gãy việc theo dõi vòng đời lịch hẹn.
+
+2. Thiếu hụt dữ liệu tài chính và xử lý vi phạm:  
+  -Legacy DB vắng mặt hoàn toàn các cột quản lý tiền cọc (`deposit_amount`), phí phạt (`penalty_fee`) và lý do hủy (`cancel_reason`). Việc này khiến hệ thống không thể đối soát dòng tiền khi khách đặt cọc giữ chỗ hoặc tính toán chi phí phạt khi khách hủy lịch muộn.
+
+3. Thiếu sót phân hệ Đơn thuốc (`Prescriptions`):  
+  -Mặc dù Activity Diagram thể hiện rõ bước bác sĩ kê đơn sau khi hoàn tất khám bệnh, CSDL cũ lại không có bảng lưu trữ đơn thuốc. Điều này khiến kết quả khám chữa bệnh bị đứt đoạn, người bệnh không thể tra cứu lịch sử dùng thuốc trên hệ thống.
