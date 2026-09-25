@@ -1,0 +1,10 @@
+# BÁO CÁO TÍNH TOÀN VẸN HỆ THỐNG: VAI TRÒ CỦA CỘT DAMAGE_FEE
+
+Trong quy trình trả xe thực tế, việc ghi nhận phí đền bù hư hỏng là yếu tố sống còn để đảm bảo **tính toàn vẹn dữ liệu và đối soát tài chính**.
+
+Nếu vắng mặt cột `damage_fee` trong CSDL:
+1. **Mất cân bằng tài chính:** Bảng `Rentals` chỉ lưu tiền cọc (`security_deposit`) mà không thể trừ chi phí sửa chữa phát sinh, dẫn đến việc hoàn trả sai số tiền thực tế cho khách hàng.
+2. **Đứt gãy luồng đối soát:** Hệ thống không thể liên kết số tiền phạt trừ cọc với nguyên nhân cụ thể trong biên bản kiểm tra (`Inspections`), gây bất đồng vô căn cứ giữa khách hàng và đơn vị cho thuê.
+3. **Thất thoát báo cáo:** Thiếu `damage_fee` làm tổn hại tính chính xác của báo cáo doanh thu tài chính tổng hợp.
+
+Do đó, `damage_fee` là cột **bắt buộc** để khép kín công thức hạch toán: `Số tiền hoàn trả = security_deposit - late_fee - damage_fee`, đảm bảo tính minh bạch và toàn vẹn dữ liệu cho hệ thống.

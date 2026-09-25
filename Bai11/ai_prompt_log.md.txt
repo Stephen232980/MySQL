@@ -1,0 +1,35 @@
+# NHẬT KÝ SỬ DỤNG AI TRONG TỐI ƯU HÓA CSDL (AI PROMPT LOG)
+
+**Dự án:** AutoRide Database Optimization  
+
+---
+
+### Prompt 1: Chẩn đoán Khoảng trống Dữ liệu (Data Gaps)
+* **Giai đoạn:** Bước 1 - Hình thành ý tưởng và Thẩm định
+* **Nội dung Prompt:**  
+  > "So sánh quy trình trả xe trong Activity Diagram với bảng Rentals cũ. Hãy chỉ ra ít nhất 3 khoảng trống dữ liệu khiến CSDL bất lực khi xử lý hư hỏng xe và tính toán tiền đền bù?"
+* **Kết quả thu được:** AI phân tích và chỉ ra 3 điểm thiếu sót: thiếu bảng lưu biên bản kiểm tra xe (`Inspections`), thiếu các cột tài chính (`security_deposit`, `late_fee`, `damage_fee`), và trạng thái `status` dạng chuỗi đơn giản không quản lý được vòng đời hợp đồng.
+
+---
+
+### Prompt 2: Tư vấn Thiết kế Schema & Kiểu Dữ Liệu
+* **Giai đoạn:** Bước 2 - Thiết kế lại ERD
+* **Nội dung Prompt:**  
+  > "Tôi cần nâng cấp bảng Rentals và tạo bảng Inspections. Cột status nên dùng ENUM gồm những giá trị nào? Các cột phí đền bù nên dùng INT hay DECIMAL? Khóa ngoại của Inspections nên đặt ON DELETE RESTRICT hay CASCADE?"
+* **Kết quả thu được:** AI tư vấn dùng `ENUM('BOOKED', 'ACTIVE', 'COMPLETED', 'CANCELLED')`, dùng `DECIMAL(12,2)` cho dữ liệu tiền tệ để tránh sai số làm tròn, và dùng `ON DELETE RESTRICT` cho bảng `Inspections` để tránh xóa nhầm lịch sử kiểm tra xe.
+
+---
+
+### Prompt 3: Viết mã DDL nâng cấp MySQL
+* **Giai đoạn:** Bước 3 - Triển khai mã SQL
+* **Nội dung Prompt:**  
+  > "Viết các câu lệnh SQL MySQL sử dụng ALTER TABLE để thêm cột vào Rentals và CREATE TABLE cho Inspections với ràng buộc khóa ngoại chặt chẽ."
+* **Kết quả thu được:** AI cung cấp cú pháp chuẩn `ALTER TABLE Rentals MODIFY COLUMN... ADD COLUMN...` và `CREATE TABLE Inspections` có gắn `CONSTRAINT fk_inspections_rentals`.
+
+---
+
+### Prompt 4: Mô phỏng Kịch bản DML và Truy vấn Tính Tiền Hoàn Trả
+* **Giai đoạn:** Bước 4 - Vận hành và Chép liệu thực tế
+* **Nội dung Prompt:**  
+  > "Viết kịch bản DML (INSERT, UPDATE) mô phỏng khách Nguyen Van A cọc 10M, trả xe vỡ đèn pha phạt 2M. Sau đó viết câu lệnh SELECT tính số tiền hoàn trả = security_deposit - late_fee - damage_fee."
+* **Kết quả thu được:** AI cung cấp chuỗi lệnh DML và câu lệnh `SELECT` kết hợp `LEFT JOIN` tính ra kết quả hoàn trả chính xác là 8.000.000 VNĐ.
