@@ -1,0 +1,10 @@
+# Phân tích hiệu suất trước và sau khi tối ưu hóa
+
+## 1. Trước khi tối ưu (Truy vấn cũ):
+- **Cột type:** Nhận giá trị `ALL`, nghĩa là MySQL phải thực hiện **Full Table Scan** (quét toàn bộ bảng) vì việc dùng hàm `YEAR()` và `MONTH()` trên cột `created_at` làm mất tính SARGable, vô hiệu hóa cấu trúc cây B-Tree Index[cite: 20, 23].
+- **Cột rows:** Phải quét qua hàng triệu dòng dữ liệu, dẫn đến nghẽn cổ chai hiệu suất[cite: 23].
+
+## 2. Sau khi tối ưu (Truy vấn mới):
+- **Cột type:** Chuyển từ `ALL` sang `range`, cho phép cơ sở dữ liệu tìm kiếm theo khoảng thời gian nhanh chóng[cite: 23, 24].
+- **Cột possible_keys và key:** Hiển thị chính xác tên chỉ mục vừa tạo là `idx_type_date`[cite: 23, 24].
+- **Cột rows:** Số lượng dòng cần quét giảm mạnh từ hàng triệu xuống con số cực nhỏ, giúp giải quyết triệt để điểm nghẽn hiệu suất[cite: 23, 24].

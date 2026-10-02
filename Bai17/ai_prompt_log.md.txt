@@ -1,0 +1,13 @@
+# Nhật ký các câu hỏi kỹ thuật về Index và SARGable
+
+## Câu hỏi 1 (Bước 1):
+- **Hỏi:** Trong MySQL, nếu tôi tạo Index cho một cột ngày tháng, nhưng trong mệnh đề WHERE tôi lại viết `WHERE YEAR(col) = 2026`, tại sao MySQL lại từ chối sử dụng Index và phải quét toàn bộ bảng (Full Table Scan)?
+- **Trả lời:** Do hàm `YEAR()` biến đổi dữ liệu của cột trước khi so sánh, khiến MySQL không thể dò tìm trực tiếp trên cấu trúc B-Tree có sẵn mà bắt buộc phải tính toán trên từng dòng (Non-SARGable).
+
+## Câu hỏi 2 (Bước 2):
+- **Hỏi:** Khi thiết kế một Composite Index trong MySQL cho cột `(transaction_type, created_at)`, thứ tự các cột trong Index có quan trọng không? Tôi nên đặt cột nào đứng trước để có hiệu suất lọc dữ liệu (Selectivity) tốt nhất?
+- **Trả lời:** Thứ tự rất quan trọng. Nên đặt cột có tính phân loại cao hơn hoặc cột được dùng trong phép so sánh bằng (`=`) lên trước (ví dụ `transaction_type`), tiếp theo là cột dùng cho khoảng thời gian (`created_at`).
+
+## Câu hỏi 3 (Bước 3 & 4):
+- **Hỏi:** Làm thế nào để tôi có thể xem được chi tiết thời gian thực thi (Execution Time) của một câu lệnh SQL thay vì chỉ xem Execution Plan trong MySQL (Gợi ý: `SET profiling = 1`)?
+- **Trả lời:** Bạn có thể bật `SET profiling = 1;`, chạy câu lệnh cần đo, sau đó dùng lệnh `SHOW PROFILES;` để xem mã định danh và `SHOW PROFILE FOR QUERY <id>;` để phân tích thời gian chi tiết của từng bước.
