@@ -1,0 +1,6 @@
+# Phân tích việc sử dụng COUNT(o.order_id) thay vì COUNT(*) trong LEFT JOIN
+
+Khi sử dụng `LEFT JOIN`, bảng bên trái (Customers) được giữ lại toàn bộ, kể cả khi không có dữ liệu khớp ở bảng bên phải (Orders). Đối với khách hàng không có đơn hàng (như Charlie), các cột từ bảng Orders sẽ trả về giá trị `NULL`.
+
+- Nếu dùng **`COUNT(*)`**: Hàm sẽ đếm cả dòng chứa giá trị `NULL` đó, dẫn đến kết quả số lượng đơn hàng của Charlie bị tính thành `1` thay vì `0`, làm sai lệch báo cáo thống kê.
+- Nếu dùng **`COUNT(o.order_id)`**: Hàm `COUNT` trên một cột cụ thể sẽ bỏ qua các giá trị `NULL`, giúp trả về chính xác số lượng đơn hàng thực tế là `0` cho khách hàng chưa phát sinh giao dịch.
