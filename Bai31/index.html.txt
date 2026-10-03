@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đọc Truyện Ngắn</title>
+    <!-- Bước 6: Nhúng file styles.css bằng thẻ <link> -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Bước 4: Tạo ảnh truyện đặt ở đầu trang -->
+    <div class="story-cover">
+        <img src="https://picsum.photos/800/300" alt="Ảnh bìa truyện">
+    </div>
+
+    <!-- Bước 7: Tiêu đề truyện được căn giữa, chỉnh font và màu sắc -->
+    <h1 class="story-title">Dế Mèn Phiêu Lưu Ký</h1>
+
+    <!-- Bước 1 & Bước 8: Khối mục lục truyện -->
+    <div class="table-of-contents">
+        <h3>Mục lục</h3>
+        <ul>
+            <!-- Bước 3: Liên kết từng mục lục nhảy đến nội dung tương ứng bằng thẻ <a> -->
+            <li><a href="#chuong-1">Chương 1: Tôi sống độc lập từ thuở bé</a></li>
+            <li><a href="#chuong-2">Chương 2: Bài học đường đời đầu tiên</a></li>
+            <li><a href="#chuong-3">Chương 3: Thoát khỏi tay hai đứa trẻ</a></li>
+        </ul>
+    </div>
+
+    <!-- Bước 2 & Bước 5: Nội dung ứng với từng mục lục truyện, sử dụng thẻ <h5> -->
+    <div class="story-content">
+        <!-- Chương 1 -->
+        <h5 id="chuong-1">Chương 1: Tôi sống độc lập từ thuở bé</h5>
+        <p>
+            Bởi tôi ăn uống điều độ và làm việc có chừng mực nên tôi chóng lớn lắm. Chẳng bao lâu tôi đã trở thành một chàng dế thanh niên cường tráng. Đôi càng tôi mẫm bóng. Những cái vuốt ở chân, ở khoeo cứ cứng dần và nhọn hoắt. Thỉnh thoảng, muốn thử sự lợi hại của những chiếc vuốt, tôi co cẳng lên, đạp phanh phách vào các ngọn cỏ.
+        </p>
+        <p>
+            Những ngọn cỏ gãy rạp, y như có nhát dao vừa lia qua. Đôi cánh tôi, trước kia ngắn hủn hoẳn bây giờ thành cái áo bào kín xuống tận chấm đuôi. Mỗi khi tôi vũ lên, đã nghe tiếng phành phạch giòn giã. Lúc tôi đi bách bộ thì cả người tôi rung rinh một màu nâu bóng mỡ soi gương được và rất ưa nhìn.
+        </p>
+
+        <!-- Chương 2 -->
+        <h5 id="chuong-2">Chương 2: Bài học đường đời đầu tiên</h5>
+        <p>
+            Bên hàng xóm tôi có cái anh Dế Choắt. Dế Choắt người gầy gò và dài lêu nghêu như một gã nghiện thuốc phiện. Đã thanh niên rồi mà cánh chỉ ngắn củn đến giữa lưng, hở cả mạng sườn như người cởi trần mặc áo gi-lê. Đôi càng thì bè bè, nặng nề, trông đến xấu.
+        </p>
+        <p>
+            Một hôm, tôi trêu chị Cốc khiến chị Cốc tức giận mổ chết Dế Choắt. Trước khi nhắm mắt, Dế Choắt khuyên tôi: "Ở đời mà có thói hung hăng bậy bạ, có óc mà không biết suy nghĩ, sớm muộn rồi cũng mang vạ vào mình đấy". Đó là bài học đường đời đầu tiên thấm thía của tôi.
+        </p>
+
+        <!-- Chương 3 -->
+        <h5 id="chuong-3">Chương 3: Thoát khỏi tay hai đứa trẻ</h5>
+        <p>
+            Sau bài học cay đắng ấy, tôi quyết định lên đường phiêu lưu khám phá thế giới rộng lớn. Đường đi nhiều gian nan và hiểm trở, không ít lần tôi bị rơi vào cạm bẫy của con người và thiên nhiên, nhưng nhờ lòng can đảm cùng sự nhanh trí, tôi dần trưởng thành hơn.
+        </p>
+        <p>
+            Thế giới ngoài kia bao la biết mấy, chứa đựng bao nhiêu điều kỳ thú và những người bạn tốt bụng đang chờ đón ở phía trước.
+        </p>
+    </div>
+
+</body>
+</html>
