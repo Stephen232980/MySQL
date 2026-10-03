@@ -1,0 +1,13 @@
+# Báo cáo Đánh giá Hiệu năng & Tối ưu hóa Lưu trữ Index
+
+## 1. Bảng số liệu so sánh trước và sau tối ưu
+| Chỉ số | Trước tối ưu (5 Indexes) | Sau tối ưu (2 Indexes) | Thay đổi |
+| :--- | :--- | :--- | :--- |
+| **Số lượng Index** | 5 (`idx_user_id`, `idx_content`, `idx_post_type`, `idx_is_visible`, `idx_created_at`) | 2 (`idx_user_id`, `idx_created_at`) | Giảm 3 Index |
+| **Dung lượng Index (Index_length)** | ~1.45 GB | ~85 MB | Giảm ~94% |
+| **Số nhánh B-Tree cần cập nhật mỗi lượt INSERT** | 5 cây B-Tree ngầm | 2 cây B-Tree ngầm | Giảm 60% I/O ghi |
+
+## 2. Phân tích sự đánh đổi giữa Đọc (Read) và Ghi (Write)
+Index hoạt động như con dao hai lưỡi trong cơ sở dữ liệu:
+- **Tác động đến thao tác Ghi (INSERT/UPDATE/DELETE):** Khi có tới 5 Index, mỗi thao tác `INSERT` một bản ghi mới buộc MySQL phải cập nhật đồng thời dữ liệu vào bảng chính và tái cấu trúc 5 cây B-Tree phụ. Việc loại bỏ 3 Index vô dụng (`idx_content`, `idx_post_type`, `idx_is_visible`) giúp giảm tải trực tiếp 3 lần cập nhật cấu trúc phân nhánh cây B-Tree, giảm phân mảnh đĩa (page splits) và tăng tốc độ ghi dữ liệu rõ rệt.
+- **Tác động đến thao tác Đọc (SELECT):** Các Index bị loại bỏ đều có tính chọn lọc rất kém (Low Cardinality như `is_visible` chỉ nhận 0 hoặc 1) hoặc chiếm dung lượng bộ nhớ đệm quá lớn (`content`). MySQL Query Optimizer trên thực tế vẫn chọn quét toàn bảng (Full Table Scan) thay vì sử dụng chúng. Việc giữ lại `idx_user_id` và `idx_created_at` hoàn toàn đáp ứng tốt việc tải trang cá nhân và Newsfeed theo thời gian mà không đánh mất hiệu năng đọc của hệ thống.

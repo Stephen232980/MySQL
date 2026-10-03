@@ -1,0 +1,24 @@
+# Nhật ký Tra cứu & Phản biện cùng AI
+
+### Prompt 1: Tác động của Index trên TEXT và BOOLEAN[cite: 2]
+- **Câu hỏi:** "Trong MySQL, nếu tôi tạo Index trên một cột chứa văn bản dài (TEXT) và một cột kiểu BOOLEAN (0 và 1), thì điều này gây hại như thế nào đến bộ nhớ RAM, dung lượng Disk và bộ tối ưu hóa (Query Optimizer)?"[cite: 2]
+- **Tóm tắt phản hồi của AI:**
+  - *Bộ nhớ Disk & RAM:* Cột `TEXT` có độ dài lớn, nếu đánh B-Tree thông thường sẽ khiến kích thước cây Index phình to nhanh chóng, chiếm dụng dung lượng Buffer Pool của InnoDB trong RAM. Cột `BOOLEAN` tuy nhỏ nhưng tạo thêm gánh nặng bảo trì cây vô ích.
+  - *Query Optimizer:* Cột `BOOLEAN` có Cardinality cực thấp (chỉ 2 giá trị). Khi lọc dữ liệu, chi phí duyệt Index rồi Look-up sang bảng chính đắt hơn việc đọc thẳng toàn bảng, do đó Optimizer thường bỏ qua Index này.
+
+---
+
+### Prompt 2: Lý giải nguyên nhân Full Table Scan dù có Index[cite: 3]
+- **Câu hỏi:** "Tại sao khi tôi truy vấn SELECT * FROM Posts WHERE is_visible = 1 trên một bảng có hàng triệu dòng (trong đó 99% bài viết là visible = 1), MySQL lại quyết định quét toàn bảng (Full Table Scan) thay vì sử dụng Index idx_is_visible đã tạo?"[cite: 3]
+- **Tóm tắt phản hồi của AI:**
+  - Index chỉ phát huy tác dụng khi có tính chọn lọc cao (High Selectivity).
+  - Khi 99% bản ghi thỏa mãn điều kiện `is_visible = 1`, việc sử dụng Index đồng nghĩa hệ thống phải nhảy ngẫu nhiên (Random I/O) hàng triệu lần giữa Index Page và Data Page (Clustered Index Look-up). 
+  - Đọc tuần tự toàn bảng (Sequential I/O qua Full Table Scan) lúc này đạt tốc độ cao hơn và tiêu tốn ít chi phí CPU/Disk hơn rất nhiều.
+
+---
+
+### Prompt 3: Giải pháp thay thế cho tìm kiếm nội dung TEXT[cite: 5]
+- **Câu hỏi:** "Nếu muốn tìm kiếm từ khóa bên trong cột content (kiểu TEXT) mà không bị tốn quá nhiều dung lượng như B-Tree Index, tôi nên sử dụng cơ chế nào của MySQL (Gợi ý: FULLTEXT Index)?"[cite: 5]
+- **Tóm tắt phản hồi của AI:**
+  - B-Tree Index thông thường không hỗ trợ tối ưu cho toán tử `LIKE '%keyword%'` (buộc phải quét toàn bộ).
+  - Giải pháp chuẩn là sử dụng **FULLTEXT Index** kết hợp mệnh đề `MATCH(...) AGAINST(...)`. FULLTEXT sử dụng cấu trúc Inverted Index (chỉ mục đảo), chỉ lưu từ khóa và vị trí xuất hiện, giúp tiết kiệm dung lượng và tăng tốc độ tìm kiếm văn bản toàn diện mà không làm nghẽn hiệu năng chung của bảng.
