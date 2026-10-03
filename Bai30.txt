@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Việt Nam - Wikipedia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px auto;
+            max-width: 800px;
+            color: #202122;
+        }
+
+        /* Tiêu đề chính */
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        /* Dòng phụ đề Wikipedia */
+        .subtitle {
+            font-size: 14px;
+            color: #54595d;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        /* Đường kẻ ngang phân cách */
+        hr {
+            border: 0;
+            border-top: 1px solid #a2a9b1;
+            margin-bottom: 24px;
+        }
+
+        /* Căn đều hai bên và lùi đầu dòng cho từng đoạn văn */
+        p {
+            text-align: justify;
+            text-indent: 40px;
+            margin-bottom: 16px;
+        }
+
+        /* Định dạng màu sắc các liên kết/từ khóa màu xanh */
+        .link-text {
+            color: #0645ad;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .link-text:hover {
+            text-decoration: underline;
+        }
+
+        /* Ký hiệu chú thích nguồn trên đầu chữ (superscript) */
+        sup {
+            font-size: 11px;
+            color: #0645ad;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Việt Nam</h1>
+    <div class="subtitle">Bách khoa toàn thư mở Wikipedia</div>
+    <hr>
+
+    <p>
+        <strong>Việt Nam</strong> (tên chính thức: <strong>Cộng hòa Xã hội chủ nghĩa Việt Nam</strong>) là một quốc gia nằm ở phía đông, ở giữa Lào và Campuchia, thuộc <span class="link-text">bán đảo Đông Dương</span>, thuộc khu vực <strong>Đông Nam Á</strong> thuộc châu Á.
+    </p>
+
+    <p>
+        Phía bắc Việt Nam giáp với <span class="link-text">Trung Quốc</span>, phía tây Việt Nam giáp với <span class="link-text">Lào</span> và <span class="link-text">Campuchia</span>, phía tây nam giáp <span class="link-text">vịnh Thái Lan</span>, phía đông và phía nam giáp <span class="link-text">biển Đông</span> và có hơn 4.000 hòn đảo,<sup>[6]</sup> bãi đá ngầm lớn nhỏ, gần và xa bờ, có vùng nội thủy, lãnh hải, vùng đặc quyền kinh tế và thềm lục địa được <strong>Chính phủ Việt Nam</strong> xác định gần gấp ba lần diện tích đất liền (khoảng trên 1 triệu km²). Trên biển Đông có quần đảo <span class="link-text">Trường Sa</span> và <span class="link-text">Hoàng Sa</span> được Việt Nam tuyên bố chủ quyền nhưng đang trong vòng tranh chấp với các quốc gia <span class="link-text">Đài Loan</span>, <span class="link-text">Trung Quốc</span>, <span class="link-text">Malaysia</span> và <span class="link-text">Philippines</span>.
+    </p>
+
+    <p>
+        Việt Nam đã thiết lập mối <span class="link-text">quan hệ ngoại giao</span> với 178 quốc gia, quan hệ kinh tế – thương mại – đầu tư với trên 224 quốc gia và vùng lãnh thổ, là thành viên <strong>Liên Hợp Quốc</strong>, <strong>ASEAN</strong>, <strong>ASEM</strong>, <strong>Dưới đây là mã nguồn HTML kết hợp CSS hoàn chỉnh để định dạng trang web giống với mẫu yêu cầu trong ảnh, áp dụng đầy đủ các thuộc tính định dạng văn bản được gợi ý:
+
+### Mã nguồn HTML & CSS
+
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Việt Nam - Wikipedia</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #ffffff;
+            color: #202122;
+            padding: 20px 40px;
+        }
+
+        /* Tiêu đề chính */
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        /* Phụ đề bên dưới tiêu đề */
+        .subtitle {
+            font-size: 13px;
+            color: #54595d;
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        /* Đường kẻ phân cách */
+        hr {
+            border: 0;
+            border-top: 1px solid #a2a9b1;
+            margin-bottom: 20px;
+        }
+
+        /* Định dạng các đoạn văn bản */
+        p {
+            font-size: 14px;
+            line-height: 1.6;
+            text-align: justify; /* Căn đều hai lề */
+            text-indent: 30px;   /* Thụt đầu dòng */
+            margin-bottom: 12px;
+        }
+
+        /* Định dạng các liên kết */
+        a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Thẻ chỉ số trích dẫn */
+        sup {
+            font-size: 10px;
+            color: #0645ad;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Việt Nam</h1>
+    <div class="subtitle">Bách khoa toàn thư mở Wikipedia</div>
+    <hr>
+
+    <p>
+        <strong>Việt Nam</strong> (tên chính thức: <strong>Cộng hòa Xã hội chủ nghĩa Việt Nam</strong>) là một quốc gia nằm ở phía đông, ở giữa Lào và Campuchia, thuộc <a href="#">bán đảo Đông Dương</a>, thuộc khu vực <strong>Đông Nam Á</strong> thuộc châu Á.
+    </p>
+
+    <p>
+        Phía bắc Việt Nam giáp với <a href="#">Trung Quốc</a>, phía tây Việt Nam giáp với <a href="#">Lào</a> và <a href="#">Campuchia</a>, phía tây nam giáp vịnh Thái Lan, phía đông và phía nam giáp biển Đông và có hơn 4.000 hòn đảo,<sup>[6]</sup> bãi đá ngầm lớn nhỏ, gần và xa bờ, có vùng nội thủy, lãnh hải, vùng đặc quyền kinh tế và thềm lục địa được <strong>Chính phủ Việt Nam</strong> xác định gần gấp ba lần diện tích đất liền (khoảng trên 1 triệu km²). Trên biển Đông có quần đảo <strong>Trường Sa</strong> và <strong>Hoàng Sa</strong> được Việt Nam tuyên bố chủ quyền nhưng đang trong vòng tranh chấp với các quốc gia <a href="#">Đài Loan</a>, <a href="#">Trung Quốc</a>, <a href="#">Malaysia</a> và <a href="#">Philippines</a>.
+    </p>
+
+    <p>
+        Việt Nam đã thiết lập mối quan hệ ngoại giao với 178 quốc gia, quan hệ kinh tế – thương mại – đầu tư với trên 224 quốc gia và vùng lãnh thổ, là thành viên <strong>Liên Hợp Quốc</strong>, <strong>ASEAN</strong>, <strong>ASEM</strong>, <strong>APEC</strong>, <strong>WTO</strong>, <strong>Tổ chức quốc tế Pháp ngữ</strong>, <strong>Phong trào không liên kết</strong>, <strong>UNESCO</strong> và nhiều tổ chức quốc tế, khu vực khác.<sup>[7]</sup> Kể từ năm 2000 Việt Nam là một trong những nước có mức tăng trưởng kinh tế nhanh nhất thế giới,<sup>[8]</sup> tuy nhiên tốc độ tăng trưởng chậm lại trong những năm sau. Việc đổi mới kinh tế thành công đã dẫn đường cho Việt Nam trở thành thành viên của <strong>Tổ chức Thương mại Thế giới</strong> vào năm 2007. Mặc dù đã có nhiều nỗ lực cải cách kinh tế – xã hội, Việt Nam vẫn còn gặp phải nhiều vấn đề tiêu cực như tỷ lệ hộ nghèo còn cao, <a href="#">bất bình đẳng về thu nhập cao</a>, dịch vụ chăm sóc sức khỏe kém và tình trạng bất bình đẳng giới tính còn nhiều.
+    </p>
+
+</body>
+</html>
