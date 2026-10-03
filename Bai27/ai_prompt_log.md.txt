@@ -1,0 +1,22 @@
+# Nhật ký Tra cứu Cấu trúc Clustered & Secondary Index với AI
+
+### Prompt 1: Rủi ro phân mảnh cây B-Tree khi đưa dữ liệu biến động vào Index
+- **Câu hỏi:** "Khi tạo chỉ mục chứa các trường dữ liệu liên tục thay đổi như nhiệt độ và độ ẩm của cảm biến, tại sao thao tác INSERT lại gây nghẽn hiệu năng và làm phân mảnh Data Pages trên cây B-Tree?"
+- **Tóm tắt phản hồi:** 
+  Mỗi nút trong cây B-Tree lưu trữ các khóa theo thứ tự sắp xếp cố định. Khi các giá trị đo lường biến động liên tục được nạp vào, cây không thể chèn tuần tự vào cuối trang mà buộc phải tách trang (Page Split) và dịch chuyển dữ liệu trong bộ nhớ đệm để giữ đúng thứ tự. Điều này tiêu tốn rất nhiều I/O đĩa và CPU, gây nghẽn cổ chai nghiêm trọng cho luồng INSERT.
+
+---
+
+### Prompt 2: Bản chất của Clustered Index Lookup và Covering Index
+- **Câu hỏi:** "Sự khác biệt giữa truy vấn dùng Covering Index và truy vấn dùng Secondary Index kết hợp Clustered Index Look-up là gì? Chi phí nghìn giây phát sinh đến từ đâu?"
+- **Tóm tắt phản hồi:**
+  - *Covering Index:* Toàn bộ dữ liệu nằm sẵn trên lá của Secondary Index, MySQL không cần chạm vào bảng dữ liệu chính (`Extra: Using index`).
+  - *Secondary Index Look-up:* Secondary Index chỉ chứa các cột được lập chỉ mục kèm theo khóa chính (`Primary Key`). Sau khi tìm được khóa chính qua Index, MySQL phải thực hiện thêm một lượt đọc ngẫu nhiên (Random I/O) vào Clustered Index của bảng gốc để lấy các cột còn lại (`temperature`, `humidity`). Lượt đọc bổ sung này tốn thêm vài micro-giây đến mili-giây nhưng giải phóng được rất nhiều dung lượng Index.
+
+---
+
+### Prompt 3: Giải thích kết quả EXPLAIN sau khi đổi sang Lean Index
+- **Câu hỏi:** "Tại sao sau khi chuyển sang Lean Index, kết quả EXPLAIN vẫn hiển thị `type: range` nhưng mất dòng chữ `Using index` ở cột Extra?"
+- **Tóm tắt phản hồi:**
+  - `type: range` biểu thị bộ tối ưu hóa vẫn quét theo dải khoảng giá trị trên Index `idx_lean_search` nhờ điều kiện `sensor_id = 105 AND recorded_at >= '2026-06-20'`.
+  - Mất `Using index` vì câu lệnh `SELECT` yêu cầu các cột `temperature, humidity, status` vốn không còn nằm trong chỉ mục, báo hiệu MySQL bắt buộc phải truy cập dữ liệu bảng vật lý để nạp kết quả trả về.
