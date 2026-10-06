@@ -1,0 +1,45 @@
+/* 1. Đặt font chữ và reset lề mặc định của trình duyệt */
+body {
+  font-family: Arial;
+}
+
+#menu, #menu ul, #menu li {
+  padding: 0;
+  margin: 0;
+}
+
+/* 2. Định dạng kích thước, màu nền và vị trí cho từng mục li */
+#menu li {
+  list-style: none;
+  position: relative;
+  width: 100px;
+  height: 30px;
+  padding: 0 20px;
+  background-color: black;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+/* 3. Định dạng thẻ liên kết a: chữ trắng, bỏ gạch chân */
+#menu li a {
+  text-decoration: none;
+  color: white;
+}
+
+/* 4. Đổi màu nền đỏ khi rê chuột qua mục li */
+#menu li:hover {
+  background-color: red;
+}
+
+/* 5. Định dạng menu con cấp 2 (ul con): đặt vị trí tuyệt đối và ẩn đi */
+#menu ul ul {
+  position: absolute;
+  top: 0;
+  left: 140px; /* 100px width + 20px padding trái + 20px padding phải của li cha */
+  visibility: hidden;
+}
+
+/* 6. Hiển thị menu con cấp 2 khi rê chuột vào mục li chứa nó */
+#menu ul li:hover ul {
+  visibility: visible;
+}
