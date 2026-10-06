@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phim Hoạt Hình</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: #f7f7f7;
+      color: #333333;
+    }
+
+    /* 1. Header cố định ở trên cùng */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo phong cách Phim Hoạt Hình */
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .logo span {
+      background-color: #e62117;
+      color: #ffffff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-left: 4px;
+      display: inline-block;
+    }
+
+    /* Thanh liên kết điều hướng (head-link) */
+    .head-link {
+      background-color: #efefef;
+      border-top: 1px solid #e2e2e2;
+      border-bottom: 1px solid #e2e2e2;
+    }
+
+    .head-link-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .head-link-inner span.divider {
+      color: #aaa;
+    }
+
+    .head-link-inner a {
+      color: #444444;
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+    }
+
+    /* Mức trung bình: Bỏ gạch chân, hover đổi màu và bôi đậm */
+    .head-link-inner a:hover {
+      color: #e62117;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    /* 2. Khung nội dung chính (Chừa khoảng trống phía trên do header cố định) */
+    .wrapper {
+      max-width: 1100px;
+      margin: 105px auto 30px auto;
+      padding: 0 16px;
+    }
+
+    .main-container {
+      display: flex;
+      background-color: #ffffff;
+      border: 1px solid #e5e5e5;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    /* Left content: Danh sách các video bên trái */
+    .left-content {
+      width: 32%;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border-right: 1px solid #f0f0f0;
+      padding-right: 16px;
+    }
+
+    .video-item {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px dashed #e2e2e2;
+      padding-bottom: 12px;
+    }
+
+    .video-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .video-item img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .video-item-title {
+      font-size: 13px;
+      font-weight: bold;
+      color: #333333;
+      text-decoration: none;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+
+    .video-item-title:hover {
+      color: #e62117;
+    }
+
+    .video-item-meta {
+      font-size: 11px;
+      color: #777777;
+    }
+
+    /* Right content: Video chính đang phát và mô tả */
+    .right-content {
+      width: 68%;
+    }
+
+    .video-player-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* Tỉ lệ chuẩn 16:9 */
+      background-color: #000000;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .video-player-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-main-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #222222;
+      margin-bottom: 6px;
+    }
+
+    .video-main-meta {
+      font-size: 12px;
+      color: #666666;
+      margin-bottom: 14px;
+    }
+
+    .video-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #444444;
+      border-top: 1px solid #eeeeee;
+      padding-top: 14px;
+    }
+
+    .video-desc p {
+      margin-bottom: 10px;
+    }
+
+    /* 3. Footer bản quyền */
+    .footer {
+      background-color: #efefef;
+      border-top: 1px solid #e2e2e2;
+      color: #555555;
+      text-align: center;
+      padding: 18px 16px;
+      font-size: 12px;
+      margin-top: 30px;
+    }
+
+    /* 4. Mức nâng cao: Responsive cho điện thoại & máy tính bảng */
+    @media (max-width: 768px) {
+      .main-container {
+        flex-direction: column-reverse; /* Đưa video chính lên trên, danh sách phụ xuống dưới */
+      }
+
+      .left-content {
+        width: 100%;
+        border-right: none;
+        border-top: 1px solid #e5e5e5;
+        padding-right: 0;
+        padding-top: 20px;
+      }
+
+      .right-content {
+        width: 100%;
+      }
+
+      .head-link-inner {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Khung Header cố định -->
+  <div class="top-bar">
+    <header class="header-content">
+      <a href="#" class="logo">Phim<span>HoạtHình</span></a>
+    </header>
+    
+    <!-- Phần liên kết trang (head-link) -->
+    <nav class="head-link">
+      <div class="head-link-inner">
+        <a href="#">Phim hoạt hình</a>
+        <span class="divider">|</span>
+        <a href="#">Phim hoạt hình yêu thích</a>
+        <span class="divider">|</span>
+        <a href="#">Nhân vật hoạt hình</a>
+        <span class="divider">|</span>
+        <a href="#">Góp ý</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Phần Thân Nội Dung -->
+  <div class="wrapper">
+    <div class="main-container">
+      
+      <!-- Cột Left Content: Danh sách tập phim chọn nhanh -->
+      <aside class="left-content">
+        <div class="video-item">
+          <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400&q=80" alt="Tập 1">
+          <a href="#" class="video-item-title">Welcome đến với khách sạn Nobi</a>
+          <span class="video-item-meta">5,147,528 lượt xem • Channel Fun</span>
+        </div>
+
+        <div class="video-item">
+          <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400&q=80" alt="Tập 2">
+          <a href="#" class="video-item-title">Suneo khổng lồ - Thuyết minh tiếng Việt</a>
+          <span class="video-item-meta">5,147,528 lượt xem • Doreamon Vietsub</span>
+        </div>
+
+        <div class="video-item">
+          <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=400&q=80" alt="Tập 3">
+          <a href="#" class="video-item-title">Còi điều khiển vật</a>
+          <span class="video-item-meta">5,147,528 lượt xem • Doreamon Vietsub</span>
+        </div>
+
+        <div class="video-item">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400&q=80" alt="Tập 4">
+          <a href="#" class="video-item-title">Chiếc máy tạo kẹo bông kỳ diệu</a>
+          <span class="video-item-meta">5,147,528 lượt xem • Doreamon Vietsub</span>
+        </div>
+      </aside>
+
+      <!-- Cột Right Content: Video chính và tóm tắt nội dung -->
+      <main class="right-content">
+        <div class="video-player-container">
+          <iframe 
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            title="Video Player" 
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <h1 class="video-main-title">Doraemon Ep 430 - Tớ là Mari đây &amp; Gậy di chuyển</h1>
+        <div class="video-main-meta">Tớ là Mari • 5,147,528 lượt xem • Tác giả: Fujiko F. Fujio</div>
+
+        <div class="video-desc">
+          <p>Bộ phim kể về câu chuyện Thạch Sanh chém Trăn Tinh cứu dân, bắn Đại Bàng cứu công chúa, dùng tiếng đàn nhân nghĩa dẹp tan quân xâm lăng. Nhưng cuộc đời Thạch Sanh luôn bị tên Lý Thông làm cho điêu đứng. Cuối cùng chính nghĩa đã thắng, Tên Lý Thông gian ác bị đền tội. Mời các bạn cùng
