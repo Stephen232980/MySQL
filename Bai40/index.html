@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MetricsHub - Refactored Layout</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 1. NAVBAR DÙNG FLEXBOX (Content-first, co giãn linh hoạt) -->
+  <nav class="custom-navbar">
+    <div class="nav-logo">Logo</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">VeryLongGermanWordForDashboard</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="nav-profile">Profile</div>
+  </nav>
+
+  <div class="container my-5">
+    
+    <!-- 2. DASHBOARD DÙNG CSS GRID BENTO BOX (Xoá bỏ hoàn toàn div soup .column) -->
+    <h3 class="mb-3 text-secondary">Analytics Dashboard (CSS Grid Bento)</h3>
+    <section class="grid-dashboard">
+      <div class="widget widget-large">Chart A (Chiếm 2 hàng & 2 cột)</div>
+      <div class="widget">Chart B</div>
+      <div class="widget">Chart C</div>
+      <div class="widget">Chart D</div>
+    </section>
+
+    <!-- 3. PRICING DÙNG BOOTSTRAP GRID (col-12 col-md-4, không viết CSS tay) -->
+    <h3 class="mb-3 text-secondary">Bảng giá dịch vụ (Bootstrap 5 Grid)</h3>
+    <section class="row g-4">
+      <div class="col-12 col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body text-center p-4">
+            <h5 class="card-title fw-bold">Gói Cơ bản</h5>
+            <h2 class="text-primary my-3">0đ</h2>
+            <p class="card-text text-muted">Phù hợp cho cá nhân trải nghiệm tính năng cơ bản.</p>
+            <button class="btn btn-outline-primary w-100 mt-3">Chọn gói</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="card h-100 shadow-sm border-primary">
+          <div class="card-body text-center p-4">
+            <span class="badge bg-primary mb-2">Phổ biến</span>
+            <h5 class="card-title fw-bold">Gói Nâng cao</h5>
+            <h2 class="text-primary my-3">199.000đ</h2>
+            <p class="card-text text-muted">Dành cho nhóm làm việc với đầy đủ báo cáo phân tích.</p>
+            <button class="btn btn-primary w-100 mt-3">Chọn gói</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body text-center p-4">
+            <h5 class="card-title fw-bold">Gói Doanh nghiệp</h5>
+            <h2 class="text-primary my-3">499.000đ</h2>
+            <p class="card-text text-muted">Không giới hạn thành viên, hỗ trợ riêng biệt 24/7.</p>
+            <button class="btn btn-outline-primary w-100 mt-3">Liên hệ</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

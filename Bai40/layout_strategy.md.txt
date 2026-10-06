@@ -1,0 +1,5 @@
+# Chiến lược Layout: CSS Grid vs Flexbox
+
+CSS Grid là hệ thống bố cục hai chiều (2D), quản lý đồng thời cả hàng (rows) và cột (columns) từ container cha[cite: 60]. Do đó, Grid là công cụ hoàn hảo cho Layout tổng thể (Macro-layout) như Bento Dashboard hay cấu trúc trang, cho phép các khối con span qua nhiều ô mà không cần thêm thẻ `<div>` bọc trung gian[cite: 57, 60, 61]. 
+
+Ngược lại, Flexbox là hệ thống bố cục một chiều (1D), tính toán kích thước theo dòng nội dung thực tế (Content-first)[cite: 60]. Flexbox tối ưu nhất cho các Component chi tiết (Micro-layout) như Navbar, Media Object hay Card Header — nơi các phần tử con cần co giãn, canh đều trục dọc/ngang linh hoạt theo dung lượng text mà không bị ép vào kích thước ô cố định[cite: 57, 58, 60].

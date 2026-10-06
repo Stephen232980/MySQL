@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f8f9fa;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* ===================================================
+   1. NAVBAR: Dùng Flexbox linh hoạt 1 chiều
+   =================================================== */
+.custom-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Cho phép xuống dòng mượt mà trên mobile */
+  background-color: #333333;
+  color: #ffffff;
+  padding: 15px 24px;
+  gap: 16px;
+}
+
+.nav-logo {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+}
+
+.nav-profile {
+  font-weight: 500;
+}
+
+/* ===================================================
+   2. DASHBOARD: Dùng CSS Grid 2 chiều (Bento Box)
+   =================================================== */
+.grid-dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 50px;
+}
+
+.widget {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #475569;
+  min-height: 120px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Chart A trải rộng 2 cột và 2 hàng */
+.widget-large {
+  grid-column: span 2;
+  grid-row: span 2;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+
+/* ===================================================
+   3. RESPONSIVE MEDIA QUERIES (Mobile & Tablet)
+   =================================================== */
+@media (max-width: 768px) {
+  /* Navbar rớt dòng tự nhiên, logo và profile ở hàng 1, links ở hàng 2 */
+  .custom-navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* Chuyển Dashboard Bento Grid 3 cột thành 1 cột duy nhất */
+  .grid-dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .widget-large {
+    grid-column: span 1;
+    grid-row: span 1;
+    min-height: 160px;
+  }
+}

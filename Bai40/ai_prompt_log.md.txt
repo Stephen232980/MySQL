@@ -1,0 +1,13 @@
+# Nhật ký sử dụng AI trong thiết kế Layout (AI Prompt Log)
+
+## 1. Giai đoạn Thẩm định & Phân tích lỗi (Audit & Brainstorm)
+- **Prompt:** "Khi tôi cần một bố cục mà một phần tử con (Child) phải chiếm chính xác 2 hàng và 2 cột (span 2 rows, 2 columns) đan xen với các phần tử nhỏ khác, tôi nên chọn CSS Grid hay Flexbox? Tại sao Flexbox lại chật vật với yêu cầu này?"[cite: 57]
+- **Kết quả thu được:** Hiểu rõ hạn chế của Flexbox là chỉ kiểm soát 1 chiều tại một thời điểm, dẫn đến việc phải bọc thêm các thẻ `<div class="column">` phân nhánh (tạo Div Soup) và không thể tự động hoán đổi dòng[cite: 57, 58, 60, 61]. CSS Grid giải quyết triệt để bằng `grid-column: span 2; grid-row: span 2` ngay trên cùng một mặt phẳng phẳng (Flat DOM)[cite: 60, 61].
+
+## 2. Giai đoạn Phản biện kiến trúc (Architecture Logic)
+- **Prompt:** "Trong Bootstrap 5, sự khác biệt giữa lớp col-sm-4 và col-md-4 là gì? Tại sao tôi nên dùng Bootstrap thay vì tự viết CSS Grid cho một phần tử đơn giản như 3 cột Bảng giá?"[cite: 60]
+- **Kết quả thu được:** `col-md-4` ngắt layout ở breakpoint 768px (Tablet), phù hợp hơn `col-sm-4` (576px) đối với Card bảng giá nhiều nội dung. Tận dụng Bootstrap Grid giúp loại bỏ hoàn toàn các thuộc tính lỗi thời `float: left`, `clear: both` và không tốn công viết các Media Query thủ công[cite: 58, 60].
+
+## 3. Giai đoạn Kiểm thử & Tối ưu Responsive (Pair-Programming & Test)
+- **Prompt:** "Làm thế nào để sử dụng thuộc tính flex-wrap: wrap trong Flexbox kết hợp với CSS để Navbar trên điện thoại tự động đẩy các menu xuống dòng dưới mà không che khuất Logo?"[cite: 62]
+- **Kết quả thu được:** Thiết lập `flex-wrap: wrap; gap: 16px` cho `.custom-navbar` và sử dụng Media Query `@media (max-width: 768px)` chuyển hướng trục chính `flex-direction: column` để các mục menu bung rộng tự nhiên[cite: 62].
