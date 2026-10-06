@@ -1,0 +1,5 @@
+# Tác hại của Position Absolute và Giải pháp CSS Grid
+
+Khi gán `position: absolute`, phần tử bị rút hoàn toàn khỏi luồng tài liệu chuẩn (Normal Document Flow)[cite: 66]. Thẻ cha mất khả năng tính toán chiều cao thực tế, dẫn đến việc phải fix cứng `height` bằng pixel[cite: 66, 67]. Khi xem trên màn hình nhỏ hoặc nội dung dài ra, phần tử bên dưới sẽ trồi lên đè lấn nội dung, phá vỡ nguyên lý Responsive Design[cite: 66].
+
+CSS Grid giải quyết triệt để lỗi này nhờ cơ chế bố cục 2 chiều (2D)[cite: 60, 67]. Grid vừa cho phép phần tử con mở rộng linh hoạt (`grid-row: span 2`) đan xen các khối ảnh, vừa tự động cập nhật chiều cao tự nhiên cho vùng cha mà không cần bất kỳ thuộc tính fix cứng chiều cao hay kỹ thuật clear hack nào[cite: 66, 67].

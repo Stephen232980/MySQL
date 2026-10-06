@@ -1,0 +1,14 @@
+# Nhật ký câu hỏi tra cứu kỹ thuật Layout (AI Prompt Log)
+
+## 1. Tra cứu về CSS Grid Mosaic Layout
+- **Prompt:** "Khi triển khai layout dạng Mosaic (1 ảnh lớn bên trái chiếm toàn bộ chiều cao 2 hàng, 2 ảnh nhỏ xếp chồng bên phải), cú pháp `grid-template-columns` và `grid-row` chuẩn trong CSS Grid là gì? Làm thế nào để tự động về 1 cột trên Mobile?"[cite: 67, 69]
+- **Kiến thức ghi nhận:**
+  + Định nghĩa cột theo tỉ lệ phân chia: `grid-template-columns: 2fr 1fr;`[cite: 67].
+  + Cho khối chính trải dài 2 hàng: `grid-row: span 2;`[cite: 67].
+  + Tại breakpoint Mobile (`max-width: 768px`), chỉ cần cập nhật `grid-template-columns: 1fr;` và hoàn nguyên `grid-row: span 1;` là bố cục xếp chồng liền mạch[cite: 67, 69].
+
+## 2. Tra cứu về Bootstrap Breakpoints & Grid Classes
+- **Prompt:** "Làm sao để cấu hình lưới bài viết Bootstrap vừa vặn 4 cột trên Desktop (>= 992px), tự động gập làm 2 hàng mỗi hàng 2 cột trên Tablet (>= 768px), và xếp dọc 1 cột trên Mobile (< 576px)?"[cite: 67, 69]
+- **Kiến thức ghi nhận:**
+  + Kết hợp chuỗi 3 class đáp ứng: `col-12 col-md-6 col-lg-3`[cite: 67, 69].
+  + Bọc trong khung `<div class="row g-4">` để hệ thống tự động co giãn khoảng cách rãnh (gutter) mà không cần can thiệp margin/padding thủ công[cite: 67].

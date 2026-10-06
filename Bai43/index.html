@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Chronicle - Tạp chí Nghệ thuật & Đời sống</title>
+
+  <!-- Nhúng Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding-bottom: 60px;
+    }
+
+    .page-wrapper {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 30px 16px;
+    }
+
+    /* =========================================================
+       VÙNG 1: AUTHOR INFO (Flexbox thay thế float & overflow)
+       ========================================================= */
+    .author-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap; /* Cho phép rớt nút Share xuống dòng khi mobile */
+      gap: 16px;
+      background-color: #ffffff;
+      padding: 16px 20px;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+    }
+
+    .author-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .author-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .author-details h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .author-details p {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    .btn-share {
+      background-color: #0f172a;
+      color: #ffffff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-share:hover {
+      background-color: #334155;
+    }
+
+    /* =========================================================
+       VÙNG 2: MOSAIC GALLERY (CSS Grid thay thế position absolute)
+       ========================================================= */
+    .mosaic-gallery {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-auto-rows: 210px;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.03);
+    }
+
+    /* Ảnh chính bên trái chiếm 2 hàng */
+    .gallery-featured {
+      grid-row: span 2;
+    }
+
+    /* =========================================================
+       RESPONSIVE BREAKPOINTS (Mobile & Tablet)
+       ========================================================= */
+    @media (max-width: 768px) {
+      .mosaic-gallery {
+        grid-template-columns: 1fr; /* Trở về 1 cột trên mobile */
+        grid-auto-rows: 240px;
+      }
+
+      .gallery-featured {
+        grid-row: span 1; /* Hủy span 2 hàng để hiển thị tuần tự */
+      }
+
+      .author-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-share {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+    
+    <!-- VÙNG 1: THÔNG TIN TÁC GIẢ -->
+    <header class="author-section">
+      <div class="author-meta">
+        <img class="author-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80" alt="Avatar">
+        <div class="author-details">
+          <h4>Elena Rostova</h4>
+          <p>Biên tập viên cấp cao • Đăng ngày 06/10/2026</p>
+        </div>
+      </div>
+      <button type="button" class="btn-share">Chia sẻ bài viết</button>
+    </header>
+
+    <!-- VÙNG 2: BỘ SƯU TẬP ẢNH DẠNG MOSAIC -->
+    <section class="mosaic-gallery">
+      <div class="gallery-item gallery-featured">
+        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?w=900&q=80" alt="Ảnh nổi bật 1">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600&q=80" alt="Ảnh phụ 2">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=600&q=80" alt="Ảnh phụ 3">
+      </div>
+    </section>
+
+    <!-- VÙNG 3: BÀI VIẾT ĐỀ XUẤT (BOOTSTRAP 5 GRID) -->
+    <section class="recommended-section">
+      <h3 class="fw-bold fs-4 mb-3">Bài viết liên quan</h3>
+      
+      <!-- Cấu trúc row và chia cột col-12 col-md-6 col-lg-3 -->
+      <div class="row g-4">
+        
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&q=80" class="card-img-top" style="height: 160px; object-fit: cover;" alt="Bài 1">
+            <div class="card-body">
+              <span class="badge bg-secondary mb-2">Hội họa</span>
+              <h5 class="card-title fs-6 fw-bold">Nghệ thuật đương đại thế kỷ 21</h5>
+              <p class="card-text text-muted small">Khám phá các góc nhìn mỹ thuật sáng tạo và cách biểu đạt mới.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&q=80" class="card-img-top" style="height: 160px; object-fit: cover;" alt="Bài 2">
+            <div class="card-body">
+              <span class="badge bg-secondary mb-2">Điêu khắc</span>
+              <h5 class="card-title fs-6 fw-bold">Không gian và hình khối tối giản</h5>
+              <p class="card-text text-muted small">Sự tương tác giữa ánh sáng tự nhiên và chất liệu thô mộc.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=400&q=80" class="card-img-top" style="height: 160px; object-fit: cover;" alt="Bài 3">
+            <div class="card-body">
+              <span class="badge bg-secondary mb-2">Màu sắc</span>
+              <h5 class="card-title fs-6 fw-bold">Ngôn ngữ thị giác trong thiết kế</h5>
+              <p class="card-text text-muted small">Tác động tâm lý của hệ thống màu sắc đối với trải nghiệm người đọc.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=400&q=80" class="card-img-top" style="height: 160px; object-fit: cover;" alt="Bài 4">
+            <div class="card-body">
+              <span class="badge bg-secondary mb-2">Triển lãm</span>
+              <h5 class="card-title fs-6 fw-bold">Điểm hẹn văn hóa mùa thu</h5>
+              <p class="card-text text-muted small">Tổng hợp các sự kiện nghệ thuật tiêu biểu diễn ra trong tuần.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Nhúng Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
